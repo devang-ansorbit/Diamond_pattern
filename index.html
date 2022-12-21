@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #containor {
+        border: 1px solid;
+        width: 70%;
+        margin: 10px auto;
+        margin: auto;
+        text-align: center;
+      }
+
+      #pattern {
+        /* border: 1px solid red; */
+        width: 70%;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="containor">
+      <h1>Hollow Diamond Pattern</h1>
+      <form action="" onsubmit="handleSubmit()">
+        <label for="">Enter a number (For Column) :</label>
+        <input type="number" placeholder="enter a number" id="num" value="" />
+        <input type="submit" />
+      </form>
+      <div id="pattern"></div>
+    </div>
+  </body>
+</html>
+<script>
+  function handleSubmit() {
+    event.preventDefault();
+    let reply = parseInt(document.getElementById("num").value);
+    if(reply % 2 == 0) {
+        alert("Please enter a velid number");
+        return null;
+    }
+    let num = reply;
+    document.getElementById("pattern").innerHTML = "";
+    let r = (num - 1) / 2;
+    for (let i = 0; i <= r; i++) {
+      let bag = "";
+      for (let j = 0; j < num; j++) {
+        if (i + j == r || Math.abs(i - j) == r) {
+          bag += "*";
+        } else {
+          bag += "&nbsp";
+        }
+      }
+      // console.log(bag);
+      let h1 = document.createElement("h1");
+      h1.innerHTML = bag;
+      document.getElementById("pattern").append(h1);
+    }
+    let r1 = 1;
+    let r2 = num - 2;
+    for (let i = r + 1; i < num; i++) {
+      let bag = "";
+      let r1Flag = true;
+      let r2Flag = true;
+      for (let j = 0; j < num; j++) {
+        if (j == r1 && r1Flag == true) {
+          bag = bag + "*";
+          r1++;
+          r1Flag = false;
+        } else if (j == r2 && r2Flag == true) {
+          bag = bag + "*";
+          r2--;
+          r2Flag = false;
+        } else {
+          bag = bag + "&nbsp";
+        }
+      }
+      // console.log(bag);
+      let h1 = document.createElement("h1");
+      h1.innerHTML = bag;
+      document.getElementById("pattern").append(h1);
+    }
+  }
+</script>
